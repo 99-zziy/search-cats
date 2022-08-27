@@ -80,7 +80,7 @@ html {
   cursor: pointer;
 }
 
-.ImageInfo {
+.image-info {
   position: fixed;
   left: 0;
   top: 0;
@@ -89,17 +89,17 @@ html {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.ImageInfo .title {
+.image-info .title {
   display: flex;
   justify-content: space-between;
 }
 
-.ImageInfo .title,
-.ImageInfo .description {
+.image-info .title,
+.image-info .description {
   padding: 5px;
 }
 
-.ImageInfo .content-wrapper {
+.image-info .content-wrapper {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -109,7 +109,7 @@ html {
   border-radius: 5px;
 }
 
-.ImageInfo .content-wrapper img {
+.image-info .content-wrapper img {
   width: 100%;
 }
 
@@ -163,7 +163,7 @@ html {
   .search-result-section {
     grid-template-columns: repeat(2, minmax(250px, 1fr));
   }
-  .ImageInfo .content-wrapper {
+  .image-info .content-wrapper {
     width: 100%;
   }
 }
