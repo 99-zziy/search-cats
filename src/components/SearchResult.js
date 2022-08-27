@@ -6,7 +6,7 @@ class SearchResult {
 
   constructor({ $target, initialData, onClick }) {
     this.$searchResult = document.createElement("section");
-    this.$searchResult.className = "SearchResult";
+    this.$searchResult.className = "SearchResultSection";
     $target.appendChild(this.$searchResult);
 
     this.data = initialData;
@@ -16,7 +16,7 @@ class SearchResult {
   }
 
   setState(nextData) {
-    if (nextData) this.isEmpty = true;
+    this.isEmpty = !nextData;
     this.data = nextData;
     this.render();
   }

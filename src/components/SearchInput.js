@@ -1,19 +1,33 @@
 /* eslint-disable */
-const TEMPLATE = '<input type="text">';
 
 class SearchInput {
-  constructor({ $target, onSearch }) {
-    const $searchInput = document.createElement("input");
-    this.$searchInput = $searchInput;
-    this.$searchInput.placeholder = "고양이를 검색해보세요.|";
-    this.$searchInput.autofocus = true;
+  $searchContainer = null;
+  onSearch = null;
 
-    $searchInput.className = "SearchInput";
-    $target.appendChild($searchInput);
+  constructor({ $target, onSearch, onRandomBtnClick }) {
+    this.$searchContainer = document.createElement("section");
+    this.$searchContainer.className = "search-input-section";
+    $target.appendChild(this.$searchContainer);
+
+    this.onSearch = onSearch;
+    this.render();
+  }
+
+  render() {
+    this.$searchContainer.innerHTML = `
+      <input class="search-input"/>
+      <button class="random-button">random</button>
+    `;
+
+    const $searchInput = document.querySelector(".search-input");
+    const $randomButton = document.querySelector(".random-button");
+
+    $searchInput.placeholder = "고양이를 검색해보세요.";
+    $searchInput.autofocus = true;
 
     $searchInput.addEventListener("keyup", (e) => {
       if (e.key === "Enter") {
-        onSearch(e.target.value);
+        this.onSearch(e.target.value);
       }
     });
 
@@ -21,7 +35,8 @@ class SearchInput {
       $searchInput.value = "";
     });
 
-    console.log("SearchInput created.", this);
+    $randomButton.addEventListener("click", () => {
+      onRandomBtnClick();
+    });
   }
-  render() {}
 }

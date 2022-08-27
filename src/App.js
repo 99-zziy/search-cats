@@ -17,6 +17,12 @@ class App {
         this.searchResult.setState(data);
         this.loader.setState(false);
       },
+      onRandomBtnClick: async () => {
+        this.loader.setState(true);
+        const { data } = await api.randomGetCats();
+        this.searchResult.setState(data);
+        this.loader.setState(false);
+      },
     });
 
     this.searchResult = new SearchResult({
