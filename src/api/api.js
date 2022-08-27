@@ -7,4 +7,12 @@ const api = {
       res.json()
     );
   },
+  getCatInfo: async (id) => {
+    try {
+      const res = await fetch(`${API_ENDPOINT}/api/cats/${id}`);
+      return res.json();
+    } catch (err) {
+      alert(err);
+    }
+  },
 };

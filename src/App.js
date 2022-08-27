@@ -17,10 +17,11 @@ class App {
     this.searchResult = new SearchResult({
       $target,
       initialData: this.data,
-      onClick: (image) => {
+      onClick: async (image) => {
+        const { data } = await api.getCatInfo(image.id);
         this.imageInfo.setState({
           visible: true,
-          image,
+          image: data,
         });
       },
     });
