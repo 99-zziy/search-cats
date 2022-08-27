@@ -5,12 +5,17 @@ class SearchResult {
   onClick = null;
 
   constructor({ $target, initialData, onClick }) {
-    this.$searchResult = document.createElement("section");
-    this.$searchResult.className = "SearchResultSection";
+    this.$searchResult = document.createElement("ul");
+    this.$searchResult.className = "search-result-section";
     $target.appendChild(this.$searchResult);
 
     this.data = initialData;
     this.onClick = onClick;
+
+    this.$searchResult.addEventListener("click", (e) => {
+      const catId = e.target.closest("li").dataset.catId;
+      this.onClick(this.data[catId]);
+    });
 
     this.render();
   }
@@ -28,17 +33,11 @@ class SearchResult {
 
     this.$searchResult.innerHTML = this.data
       .map(
-        (cat) => `
-            <article class="item">
-              <img src=${cat.url} alt=${cat.name} />
-            </article>
-          `
+        (cat, index) => `
+        <li data-cat-id=${index} class="cat-item">
+          <img src=${cat.url} alt=${cat.name} />
+        </li>`
       )
       .join("");
-    this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-      $item.addEventListener("click", () => {
-        this.onClick(this.data[index]);
-      });
-    });
   }
 }
