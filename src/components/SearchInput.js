@@ -69,13 +69,11 @@ class SearchInput {
       $searchInput.value = "";
     });
 
-    $randomButton.addEventListener("click", () => {
-      this.onRandomBtnClick();
-    });
+    $randomButton.addEventListener("click", this.onRandomBtnClick);
 
     this.$recentSearchContainer.addEventListener("click", (e) => {
       if (e.target.classList.contains("search-keyword")) {
-        return this.onKeywordClick(e);
+        this.onKeywordClick(e);
       }
     });
   }
