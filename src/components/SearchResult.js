@@ -2,7 +2,6 @@ class SearchResult {
   $searchResult = null;
   data = null;
   isEmpty = false;
-  onClick = null;
 
   constructor({ $target, initialData, onClick }) {
     this.$searchResult = document.createElement("ul");
@@ -10,11 +9,10 @@ class SearchResult {
     $target.appendChild(this.$searchResult);
 
     this.data = initialData;
-    this.onClick = onClick;
 
     this.$searchResult.addEventListener("click", (e) => {
       const catId = e.target.closest("li").dataset.catId;
-      this.onClick(this.data[catId]);
+      onClick(this.data[catId]);
     });
 
     this.render();
