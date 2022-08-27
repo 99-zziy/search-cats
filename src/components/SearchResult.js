@@ -1,10 +1,11 @@
 class SearchResult {
   $searchResult = null;
   data = null;
+  isEmpty = false;
   onClick = null;
 
   constructor({ $target, initialData, onClick }) {
-    this.$searchResult = document.createElement("ul");
+    this.$searchResult = document.createElement("section");
     this.$searchResult.className = "SearchResult";
     $target.appendChild(this.$searchResult);
 
@@ -15,21 +16,25 @@ class SearchResult {
   }
 
   setState(nextData) {
+    if (nextData) this.isEmpty = true;
     this.data = nextData;
     this.render();
   }
 
   render() {
+    if (this.isEmpty) {
+      return (this.$searchResult.innerHTML = "<p>검색 결과가 없습니다.</p>");
+    }
+
     this.$searchResult.innerHTML = this.data
       .map(
         (cat) => `
-            <li class="item">
+            <article class="item">
               <img src=${cat.url} alt=${cat.name} />
-            </li>
+            </article>
           `
       )
       .join("");
-
     this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
       $item.addEventListener("click", () => {
         this.onClick(this.data[index]);
