@@ -54,6 +54,26 @@ html {
   color: white;
 }
 
+.recent-search-section {
+  display: flex;
+}
+
+.search-keyword-label {
+  color: #ffa726;
+  padding: 0.5em 1.5em;
+  border-radius: 5px;
+  margin-right: 1em;
+}
+
+.search-keyword {
+  border: 1px solid #ffa726;
+  padding: 0.5em 1.5em;
+  border-radius: 3px;
+  color: #ffa726;
+  background: #fff3e0;
+  margin-right: 1em;
+}
+
 .ImageInfo {
   position: fixed;
   left: 0;
