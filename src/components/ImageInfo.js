@@ -35,7 +35,7 @@ class ImageInfo {
               <p>성격: ${temperament}</p>
               <p>태생: ${origin}</p>
             </article>
-          </ㅁ>`;
+          </article>`;
       this.$imageInfo.style.display = "block";
 
       const $imageInfo = document.querySelector(".ImageInfo");

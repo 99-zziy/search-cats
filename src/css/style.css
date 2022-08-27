@@ -74,6 +74,35 @@ html {
   width: 100%;
 }
 
+.Loader {
+  width: 100vw;
+  height: 80vw;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: dodgerblue;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
 /* dark mode 처리
 @media (prefers-color-scheme: dark) {
   body {

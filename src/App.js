@@ -3,15 +3,19 @@
 class App {
   $target = null;
   data = [];
+  loader = null;
 
   constructor($target) {
     this.$target = $target;
+    this.loader = new Loader({ $target, isLoading: false });
 
     this.searchInput = new SearchInput({
       $target,
       onSearch: async (keyword) => {
+        this.loader.setState(true);
         const { data } = await api.searchCats(keyword);
-        this.setState(data);
+        this.searchResult.setState(data);
+        this.loader.setState(false);
       },
     });
 
@@ -19,11 +23,13 @@ class App {
       $target,
       initialData: this.data,
       onClick: async (image) => {
+        this.loader.setState(true);
         const { data } = await api.getCatInfo(image.id);
         this.imageInfo.setState({
           visible: true,
           image: data,
         });
+        this.loader.setState(false);
       },
     });
 
@@ -40,11 +46,5 @@ class App {
         });
       },
     });
-  }
-
-  setState(nextData) {
-    console.log(this);
-    this.data = nextData;
-    this.searchResult.setState(nextData);
   }
 }
