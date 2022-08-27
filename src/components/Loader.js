@@ -4,7 +4,7 @@ class Loader {
 
   constructor({ $target, isLoading }) {
     this.$loader = document.createElement("div");
-    this.$loader.className = "Loader";
+    this.$loader.className = "loader";
     $target.appendChild(this.$loader);
 
     this.isLoading = isLoading;
