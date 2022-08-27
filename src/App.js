@@ -9,8 +9,9 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: (keyword) => {
-        api.fetchCats(keyword).then(({ data }) => this.setState(data));
+      onSearch: async (keyword) => {
+        const { data } = await api.searchCats(keyword);
+        this.setState(data);
       },
     });
 
