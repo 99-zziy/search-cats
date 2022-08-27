@@ -1,14 +1,16 @@
 class ImageInfo {
   $imageInfo = null;
   data = null;
+  onCloseModal = null;
 
-  constructor({ $target, data }) {
+  constructor({ $target, data, onCloseModal }) {
     const $imageInfo = document.createElement("div");
     $imageInfo.className = "ImageInfo";
     this.$imageInfo = $imageInfo;
     $target.appendChild($imageInfo);
 
     this.data = data;
+    this.onCloseModal = onCloseModal;
 
     this.render();
   }
@@ -35,6 +37,10 @@ class ImageInfo {
             </article>
           </ㅁ>`;
       this.$imageInfo.style.display = "block";
+      const closeButton = document.querySelector(".close");
+      closeButton.addEventListener("click", () => {
+        this.onCloseModal();
+      });
     } else {
       this.$imageInfo.style.display = "none";
     }

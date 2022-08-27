@@ -32,6 +32,12 @@ class App {
         visible: false,
         image: null,
       },
+      onCloseModal: () => {
+        this.imageInfo.setState({
+          visible: false,
+          image: null,
+        });
+      },
     });
   }
 
