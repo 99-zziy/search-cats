@@ -8,6 +8,7 @@ class Loader {
     $target.appendChild(this.$loader);
 
     this.isLoading = isLoading;
+    this.render();
   }
 
   setState(nextData) {
