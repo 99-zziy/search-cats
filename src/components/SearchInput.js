@@ -3,6 +3,7 @@
 class SearchInput {
   $searchContainer = null;
   onSearch = null;
+  onRandomBtnClick = null;
 
   constructor({ $target, onSearch, onRandomBtnClick }) {
     this.$searchContainer = document.createElement("section");
@@ -10,6 +11,7 @@ class SearchInput {
     $target.appendChild(this.$searchContainer);
 
     this.onSearch = onSearch;
+    this.onRandomBtnClick = onRandomBtnClick;
     this.render();
   }
 
@@ -36,7 +38,7 @@ class SearchInput {
     });
 
     $randomButton.addEventListener("click", () => {
-      onRandomBtnClick();
+      this.onRandomBtnClick();
     });
   }
 }
