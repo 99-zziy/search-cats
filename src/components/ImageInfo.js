@@ -37,9 +37,24 @@ class ImageInfo {
             </article>
           </ㅁ>`;
       this.$imageInfo.style.display = "block";
-      const closeButton = document.querySelector(".close");
-      closeButton.addEventListener("click", () => {
+
+      const $imageInfo = document.querySelector(".ImageInfo");
+      const $closeButton = document.querySelector(".close");
+
+      $closeButton.addEventListener("click", () => {
         this.onCloseModal();
+      });
+
+      $imageInfo.addEventListener("click", (e) => {
+        if (e.target.classList.contains("ImageInfo")) {
+          this.onCloseModal();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          this.onCloseModal();
+        }
       });
     } else {
       this.$imageInfo.style.display = "none";
