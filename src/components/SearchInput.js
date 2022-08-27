@@ -11,7 +11,7 @@ class SearchInput {
     this.$searchContainer.className = "search-input-section";
     $target.appendChild(this.$searchContainer);
 
-    this.$recentSearchContainer = document.createElement("section");
+    this.$recentSearchContainer = document.createElement("ul");
     this.$recentSearchContainer.className = "recent-search-section";
     $target.appendChild(this.$recentSearchContainer);
 
@@ -25,11 +25,19 @@ class SearchInput {
     this.renderRecentSearch();
   }
 
+  onKeywordClick(e) {
+    const keywordName = e.target.closest("li").dataset.keywordName;
+    this.onSearch(keywordName);
+  }
+
   renderRecentSearch() {
     this.$recentSearchContainer.innerHTML = "";
     this.$recentSearchContainer.innerHTML += `<p class="search-keyword-label">최근 검색어</p>`;
     this.$recentSearchContainer.innerHTML += this.recentSearchList
-      .map((searchKeyword) => `<p class="search-keyword">${searchKeyword}</p>`)
+      .map(
+        (searchKeyword) =>
+          `<li data-keyword-name = ${searchKeyword} class="search-keyword">${searchKeyword}</li>`
+      )
       .join("");
   }
 
@@ -63,6 +71,12 @@ class SearchInput {
 
     $randomButton.addEventListener("click", () => {
       this.onRandomBtnClick();
+    });
+
+    this.$recentSearchContainer.addEventListener("click", (e) => {
+      if (e.target.classList.contains("search-keyword")) {
+        return this.onKeywordClick(e);
+      }
     });
   }
 }
